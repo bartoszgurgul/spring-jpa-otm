@@ -24,18 +24,16 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String address;
 
-    @OneToMany
-    @JoinColumn(name = "client_id", referencedColumnName = "id_client")
+    @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
     public Client() {
     }
 
-    public Client(String firstName, String lastName, String address, List<Order> orders) {
+    public Client(String firstName, String lastName, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.orders = orders;
     }
 
     public Long getId() {

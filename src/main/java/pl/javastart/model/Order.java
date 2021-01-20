@@ -19,6 +19,10 @@ public class Order implements Serializable {
     @Column(name = "details", length = 512)
     private String orderDetails;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     public Order() {
     }
 
@@ -29,7 +33,9 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "Order [id="+id+", product="+product+", orderDetails="+orderDetails+"]";
+        return "Order [id=" + id + ", product=" + product
+                + ", orderDetails=" + orderDetails + ", "
+                + client.getFirstName() + " " +client.getLastName()+ "]";
     }
 
     public Long getId() {
@@ -54,5 +60,13 @@ public class Order implements Serializable {
 
     public void setOrderDetails(String orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }
